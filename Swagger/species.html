@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.css"/>
-		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script type="text/javascript" src="method.js"></script>
-		<script>onCreate();</script>
+	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"/></script>
+	<script type="text/javascript" src="method.js"></script>
 </head>
 <body>
 
@@ -18,7 +19,6 @@
   <div class="col-sm-4">
   	<div id="divCreateSpecimen" class="container-fluid">
 		<h1 class="display-4 text-center" >Specimen creation</h1>
-
 			<div id="dialog" title="Create a new specimen">
 				<div class="row">
 					<div class="col-sm-6">
@@ -31,7 +31,7 @@
 					</div>
 					<div class="text-center col-sm-12">
 						<div class="col text-center">
-      						<p><button id="btn1" class="btn btn-primary" onclick="method1()">Create specimen</button></p>
+      						<p><button id="btn1" class="btn btn-primary" onclick="postSpecimen()">Create specimen</button></p>
       						<p id="txtSuccessCreation" class="text-success"></p>
 							<p id="txtFailureCreation" class="text-danger"></p>
     					</div>
@@ -40,45 +40,30 @@
  			</div>
 	<button id="opener" class="btn btn-primary btn-lg btn-block">Open Dialog</button>
   </div>
+</div>
   <div class="col-sm-8">
  	<div class="container-fluid">
 		<h1 class="display-4 text-center">Specimen modification</h1>
 			<p>Set ID of specimen <input type="text" name="txtNameCreateHero" id="txtIDModifyHero" /></p>
 			<p>Rename your specimen <input type="text" name="txtNameCreateHero" id="txtNameModifyHero" /></p>
 			<p>Provide an updated description for your specimen <input type="text" name="txtDescriptionModifyHero" id="txtDescriptionModifyHero"></p>
-			<button id="btn1" onclick="method2()">Modify specimen</button>
+			<button id="btn1" onclick="putSpecimen()">Modify specimen</button>
 	</div>
   </div>
 </div>
+<div class="col-sm-12">
+	<button id="getButton" class="btn btn-primary" onclick="getSpecies()">Get species list</button>
+</div>
 <div class="container col-sm-12 text-center">
   <h2>Specimen types</h2>         
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Specimen ID</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>120</td>
-        <td>Charlie</td>
-        <td>Lost in the chocolate factory</td>
-      </tr>
-      <tr>
-        <td>64973</td>
-        <td>Big Boi</td>
-        <td>He's the big one</td>
-      </tr>
-      <tr>
-        <td>1827</td>
-        <td>Small Boi</td>
-        <td>He's a small one</td>
-      </tr>
-    </tbody>
+  <table id="speciesListTable" class="display">
+  	<thead>
+  		<th data-sortable="true" data-field="id">Specimen ID</th>
+      	<th data-field="name">Name</th>
+      	<th data-field="price">Description</th>
+  	</thead>
   </table>
 </div>
-
+<script>onCreate();</script>
 </body>
 </html>

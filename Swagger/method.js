@@ -1,4 +1,4 @@
-function method1(){
+function postSpecimen(){
 var url = "http://81.2.241.234:8080/species";
 
 var name = document.getElementById("txtNameCreateHero").value;
@@ -8,10 +8,11 @@ var params = 'name='+name+'&desc='+description;
 var request = new XMLHttpRequest();
 request.open('POST', url, true);
 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-request.addEventListener('load', reqListener);
+request.addEventListener('load', reqPostListener);
 request.send(params);
-
-function reqListener(){
+var successText = document.getElementById("txtSuccessCreation");
+var failureText = document.getElementById("txtFailureCreation");
+function reqPostListener(){
 		if(request.status == 200){
 			failureText.innerHTML = "";
 			successText.innerHTML = "Specimen creation succesful with " + request.responseText + " as response.";
@@ -23,21 +24,52 @@ function reqListener(){
 	}
 }
 
-function method2(){
+function putSpecimen(){
 var url = "http://81.2.241.234:8080/species/1640";
 
 var name = document.getElementById("txtNameCreateHero").value;
 var description = document.getElementById("txtDescriptionCreateHero").value;
 var params = 'id=1640&';
-params = 'name='+name+'&desc='+description;
+params = 'name=' + name + '&desc=' + description;
 //ID = 1640
 var request = new XMLHttpRequest();
 request.open('PUT', url, true);
 request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-request.addEventListener('load', reqListener);
+request.addEventListener('load', reqPutListener);
 request.send(params);
+var successText = document.getElementById("txtSuccessCreation");
+var failureText = document.getElementById("txtFailureCreation");
+function reqPutListener(){document.body.innerHTML = request.responseText;}
+}
 
-function reqListener(){document.body.innerHTML = request.responseText;}
+function getSpecies(){
+	var url = "http://81.2.241.234:8080/species";
+	//var count = 20;
+	//var params = 'count=' + 5 * count;
+
+	var request = new XMLHttpRequest();
+	request.open('GET', url, true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	request.addEventListener('load', reqGetListener);
+	request.send();
+
+	function reqGetListener(){
+		var jsonArray = JSON.parse(request.responseText);
+		var dataSet = [];
+		for(var i = 0; i < jsonArray.length; i++){
+			var data = [];
+			data.push(jsonArray[i].id, jsonArray[i].name, jsonArray[i].description);
+			dataSet.push(data);
+		}
+
+		table = $('#speciesListTable').DataTable();
+		table.destroy();
+		$(document).ready( function () {
+    		$('#speciesListTable').DataTable({
+    			data: dataSet
+    		});
+		} );
+	}
 }
 
 function onCreate(){
@@ -45,7 +77,6 @@ function onCreate(){
     $( "#dialog" ).dialog({
       autoOpen: false,
       modal: true,
-      close: closeFunction(),
       show: {
         effect: "scale",
         duration: 250
@@ -68,13 +99,4 @@ function onCreate(){
       $( "#dialog" ).dialog( "open" );
     });
   });
-}
-
-function closeFunction(){
-	var successText = document.getElementById("txtSuccessCreation");
-	var failureText = document.getElementById("txtFailureCreation");
-	document.getElementById("txtNameCreateHero").value = "";
-	document.getElementById("txtDescriptionCreateHero").value = "";
-	successText.innerHTML = "";
-	failureText.innerHTML = "";
 }
