@@ -18,10 +18,9 @@
 <body>
 
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
             <div id="divCreateSpecimen" class="container-fluid">
-                <h1 class="display-4 text-center">Specimen creation</h1>
-                <div id="dialog" title="Create a new specimen">
+                <div id="creationDialog" title="Create a new specimen">
                     <div class="row">
                         <div class="col-sm-6">
                             <p>Name your specimen</p>
@@ -40,16 +39,33 @@
                         </div>
                     </div>
                 </div>
-                <button id="opener" class="btn btn-primary btn-lg btn-block">Open Dialog</button>
+                <button id="creationOpener" class="btn btn-primary btn-lg btn-block">Create new specimen</button>
             </div>
         </div>
-        <div class="col-sm-8">
+        <div class="col-sm-6">
             <div class="container-fluid">
-                <h1 class="display-4 text-center">Specimen modification</h1>
-                <p>Set ID of specimen <input type="text" name="txtNameCreateHero" id="txtIDModifyHero" /></p>
-                <p>Rename your specimen <input type="text" name="txtNameCreateHero" id="txtNameModifyHero" /></p>
-                <p>Provide an updated description for your specimen <input type="text" name="txtDescriptionModifyHero" id="txtDescriptionModifyHero"></p>
-                <button id="btn1" onclick="putSpecimen()">Modify specimen</button>
+                <div id="modificationDialog" title="Create a new specimen">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>Set ID of specimen </p>
+                            <p>Rename your specimen</p>
+                            <p>Provide an updated description for your specimen</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p><input type="text" name="txtNameCreateHero" id="txtIDModifyHero" /></p>
+                            <p><input type="text" name="txtNameCreateHero" id="txtNameModifyHero" /></p>
+                            <p><input type="text" name="txtDescriptionModifyHero" id="txtDescriptionModifyHero"></p>
+                            <button id="btn1" class="btn btn-primary" onclick="putSpecimen()">Modify specimen</button>
+                        </div>
+                        <div class="text-center col-sm-12">
+                            <div class="col text-center">
+                                <p id="txtSuccessModification" class="text-success"></p>
+                                <p id="txtFailureModification" class="text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button id="modificationOpener" class="btn btn-primary btn-lg btn-block">Modify specimen</button>
             </div>
         </div>
     </div>
@@ -63,6 +79,7 @@
                 <th data-sortable="true" data-field="id">Specimen ID</th>
                 <th data-field="name">Name</th>
                 <th data-field="description">Description</th>
+                <th data-field=""></th>
             </thead>
         </table>
     </div>
