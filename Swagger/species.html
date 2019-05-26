@@ -15,72 +15,106 @@
     <script type="text/javascript" src="method.js"></script>
 </head>
 
-<body>
-    <div class="container col-sm-12 text-center">
-        <h2>Specimen types</h2>
-        <table id="speciesListTable" class="display">
-            <thead>
-                <th data-sortable="true" data-field="id">Specimen ID</th>
-                <th data-field="name">Name</th>
-                <th data-field="description">Description</th>
-                <th data-field=""></th>
-                <th data-field=""></th>
-            </thead>
-        </table>
+<body class="site-background">
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="../index.html">Home</a>
+        <a href="Swagger/species.html">Species</a>
+        <a href="#">Heroes</a>
     </div>
-    <div class="row">
-        <div hidden class="col-sm-6">
-            <div id="divCreateSpecimen" class="container-fluid">
-                <div id="creationDialog" title="Create a new specimen">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p>Name your specimen</p>
-                            <p>Provide a description for your specimen</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><input type="text" name="txtNameCreateHero" id="txtNameCreateHero" /></p>
-                            <p><input type="text" name="txtDescriptionCreateHero" id="txtDescriptionCreateHero"></p>
-                        </div>
-                        <div class="text-center col-sm-12">
-                            <div class="col text-center">
-                                <p><button id="btn1" class="btn btn-primary" onclick="postSpecimen()">Create specimen</button></p>
-                                <p id="txtSuccessCreation" class="text-success"></p>
-                                <p id="txtFailureCreation" class="text-danger"></p>
+    <div id="main">
+        <div class="container col-sm-12 text-center">
+            <div class="header">
+                <button onclick="openNav()">Open</button>
+                <h1 class="title-header">Specimen list</h1>
+            </div>
+            <button id="btnAddSpecimen" onclick=""></button>
+            <table id="speciesListTable" class="display">
+                <thead>
+                    <th data-sortable="true" data-field="id">Specimen ID</th>
+                    <th data-field="name">Name</th>
+                    <th data-field="description">Description</th>
+                    <th data-field=""></th>
+                    <th data-field=""></th>
+                </thead>
+            </table>
+        </div>
+        <div class="row">
+            <div hidden class="col-sm-6">
+                <div id="divCreateSpecimen" class="container-fluid">
+                    <div id="creationDialog" title="Create a new specimen">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Name your specimen</p>
+                                <p>Provide a description for your specimen</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p><input type="text" id="txtNameCreateHero" /></p>
+                                <p><input type="text" id="txtDescriptionCreateHero"></p>
+                            </div>
+                            <div class="text-center col-sm-12">
+                                <div class="col text-center">
+                                    <p><button id="btn1" class="btn btn-primary" onclick="postSpecimen()">Create specimen</button></p>
+                                    <p id="txtSuccessCreation" class="text-success"></p>
+                                    <p id="txtFailureCreation" class="text-danger"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <button id="creationOpener" class="btn btn-primary btn-lg btn-block">Create new specimen</button>-->
             </div>
-        </div>
-        <div hidden class="col-sm-6">
-            <div class="container-fluid">
-                <div id="modificationDialog" title="Modify an existing specimen">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <p>Set ID of specimen </p>
-                            <p>Rename your specimen</p>
-                            <p>Provide an updated description for your specimen</p>
-                        </div>
-                        <div class="col-sm-6">
-                            <p><input type="text" name="txtNameCreateHero" id="txtIDModifyHero" /></p>
-                            <p><input type="text" name="txtNameCreateHero" id="txtNameModifyHero" /></p>
-                            <p><input type="text" name="txtDescriptionModifyHero" id="txtDescriptionModifyHero"></p>
-                            <button id="btn1" class="btn btn-primary" onclick="putSpecimen()">Modify specimen</button>
-                        </div>
-                        <div class="text-center col-sm-12">
-                            <div class="col text-center">
-                                <p id="txtSuccessModification" class="text-success"></p>
-                                <p id="txtFailureModification" class="text-danger"></p>
+            <div hidden class="col-sm-6">
+                <div class="container-fluid">
+                    <div id="modificationDialog" title="Modify an existing specimen">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <p>Set ID of specimen </p>
+                                <p>Rename your specimen</p>
+                                <p>Provide an updated description for your specimen</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <p><input type="text" id="txtIDModifySpecimen" /></p>
+                                <p><input type="text" id="txtNameModifySpecimen" /></p>
+                                <p><input type="text" id="txtDescriptionModifySpecimen"></p>
+                                <button id="btnModifySpecimen" class="btn btn-primary">Modify specimen</button>
+                            </div>
+                            <div class="text-center col-sm-12">
+                                <div class="col text-center">
+                                    <p id="txtSuccessModification" class="text-success"></p>
+                                    <p id="txtFailureModification" class="text-danger"></p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!--<button id="modificationOpener" class="btn btn-primary btn-lg btn-block">Modify specimen</button>-->
             </div>
-        </div>
+            <div hidden class="col-sm-6">
+                <div class="container-fluid">
+                    <div id="deletionDialog" title="Delete an existing specimen">
+                        <div class="row">
+                            <h4 class="removal-text">Are you sure you want to remove this specimen?</h4>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-sm-6">
+                                <button id="btnCancelSpecimenRemoval" class="btn btn-lg btn-block">Cancel</button>
+                            </div>
+                            <div class="col-sm-6">
+                                <button id="btnAcceptSpecimenRemoval" class="btn btn-lg btn-block">Accept</button>
+                            </div>
+                        </div>
+                        <div class="text-center col-sm-12">
+                            <div class="col text-center">
+                                <p id="txtSuccessDeletion" class="text-success"></p>
+                                <p id="txtFailureDeletion" class="text-danger"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 </body>
-    <script>
-        onCreate();
-    </script>
+</div>
+<script>
+    onCreate();
+</script>
+
 </html>

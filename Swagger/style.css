@@ -1,35 +1,165 @@
-#divCreateSpecimen
-{
-	background-color: rgb(230, 255, 255);
+.header button {
+    float: left;
+    width: 50px;
+    height: 50px;
 }
-:root{
-	--main-color-granny-smith-apple:#9EE493;
-	--secondary-color-nyanza: #DAF7DC;
-	--alternative-color-paynes-grey: #4F6D7A;
-	--alternative-accent-color-dark-sky-blue: #84C0C6;
-	--third-color-columbia-blue: #C0D6DF;
-}
-#modificationOpener{
-	color: white;
-	background-color: var(--alternative-color-paynes-grey);
-	outline-color: var(--alternative-color-paynes-grey);
-	width: 100px;
-	margin-top: 15px;
-	margin-bottom: 15px;
 
+.header h1 {
+    position: relative;
 }
-#deletionOpener{
-	color: white;
-	background-color: var(--alternative-accent-color-dark-sky-blue);
-	outline-color: var(--alternative-accent-color-dark-sky-blue);
-	width: 100px;
-	margin-top: 15px;
-	margin-bottom: 15px;
+
+#divCreateSpecimen {
+    background-color: rgb(230, 255, 255);
 }
-.horizontal-div{
-	text-align: center;
+
+:root {
+    --main-color-steel-teal: #172A3A;
+    --secondary-color-nyanza-light: rgb(235, 247, 236);
+    --alternative-color-paynes-grey: #4F6D7A;
+    --alternative-accent-color-dark-sky-blue: #84C0C6;
+    --third-color-columbia-blue: #C0D6DF;
 }
-#speciesListTable{
-	border-collapse: collapse;
-	width: 100% !important; 
+
+#modificationOpener {
+    color: white;
+    background-color: var(--alternative-color-paynes-grey);
+    outline-color: var(--alternative-color-paynes-grey);
+    width: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#deletionOpener {
+    color: white;
+    background-color: var(--alternative-accent-color-dark-sky-blue);
+    outline-color: var(--alternative-accent-color-dark-sky-blue);
+    width: 100px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.horizontal-div {
+    text-align: center;
+}
+
+#speciesListTable {
+    border-collapse: collapse;
+    width: 100% !important;
+}
+
+.removal-text {
+    text-align: center;
+    padding-bottom: 25px;
+}
+
+#btnCancelSpecimenRemoval {
+    border-radius: 8px;
+    padding: 8px;
+    background-color: var(--alternative-color-paynes-grey);
+    outline-color: var(--alternative-color-paynes-grey);
+    color: white;
+}
+
+#btnAcceptSpecimenRemoval {
+    border-radius: 8px;
+    padding: 8px;
+    background-color: var(--main-color-steel-teal);
+    outline-color: var(--main-color-steel-teal);
+    color: white;
+}
+
+.title-header {
+    color: var(--main-color-steel-teal);
+    content: '\u2630';
+}
+
+.site-background {
+    background-color: var(--secondary-color-nyanza-light);
+}
+
+#btnAddSpecimen {
+    background-image: url("/Swagger/res/svg_images/icon_add.svg");
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border-color: transparent;
+    height: 35px;
+    width: 35px;
+}
+
+#btnAddSpecimen:focus {
+    outline: none !important;
+}
+
+
+/* The side navigation menu */
+
+.sidenav {
+    height: 100%;
+    /* 100% Full-height */
+    width: 0;
+    /* 0 width - change this with JavaScript */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #111;
+    /* Black*/
+    overflow-x: hidden;
+    /* Disable horizontal scroll */
+    padding-top: 60px;
+    /* Place content 60px from the top */
+    transition: 0.5s;
+    /* 0.5 second transition effect to slide in the sidenav */
+}
+
+
+/* The navigation menu links */
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+
+/* When you mouse over the navigation links, change their color */
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+
+/* Position and style the close button (top right corner) */
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+}
+
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
 }
