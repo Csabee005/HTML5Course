@@ -1,6 +1,35 @@
-<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
-
 #divCreateSpecimen
 {
 	background-color: rgb(230, 255, 255);
+}
+:root{
+	--main-color-granny-smith-apple:#9EE493;
+	--secondary-color-nyanza: #DAF7DC;
+	--alternative-color-paynes-grey: #4F6D7A;
+	--alternative-accent-color-dark-sky-blue: #84C0C6;
+	--third-color-columbia-blue: #C0D6DF;
+}
+#modificationOpener{
+	color: white;
+	background-color: var(--alternative-color-paynes-grey);
+	outline-color: var(--alternative-color-paynes-grey);
+	width: 100px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+
+}
+#deletionOpener{
+	color: white;
+	background-color: var(--alternative-accent-color-dark-sky-blue);
+	outline-color: var(--alternative-accent-color-dark-sky-blue);
+	width: 100px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.horizontal-div{
+	text-align: center;
+}
+#speciesListTable{
+	border-collapse: collapse;
+	width: 100% !important; 
 }

@@ -69,13 +69,45 @@ function getSpecies() {
             $('#speciesListTable').DataTable({
                 data: dataSet,
                 "columnDefs": [{
-                    "targets": -1,
+                    "targets": 3,
                     "data": null,
-                    "defaultContent": "<button>Click!</button>"
+                    "defaultContent": '<button id="modificationOpener" onClick="onModificationClick()" class="edit-button btn btn-lg btn-block">Edit</button>'
+                },
+                {
+                    "targets": 4,
+                    "data": null,
+                    "defaultContent": '<button id="deletionOpener" onClick="onDeletionClick(1903)" class="btn btn-lg btn-block">Remove</button>'
                 }]
+            });
+            $('#speciesListTable tbody').on( 'click', 'column', function () {
+                var data = table.row( $(this).parents('tr') ).data();
+                alert(data);
             });
         });
     }
+}
+function onDeletionClick(id){
+    var url = "http://81.2.241.234:8080/species/"+id;
+
+    //var name = document.getElementById("txtNameCreateHero").value;
+    //var description = document.getElementById("txtDescriptionCreateHero").value;
+    var request = new XMLHttpRequest();
+    request.open('DELETE', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.addEventListener('load', deleteListener);
+    request.send();
+    
+    function deleteListener(){alert(request.responseText);}
+    //ID = 1640
+    /*var request = new XMLHttpRequest();
+    request.open('PUT', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.addEventListener('load', reqPutListener);
+    request.send(params);
+    var successText = document.getElementById("txtSuccessCreation");
+    var failureText = document.getElementById("txtFailureCreation");
+
+    function reqPutListener() { document.body.innerHTML = request.responseText; }*/
 }
 
 function onCreate() {
@@ -105,7 +137,9 @@ function onCreate() {
             $("#creationDialog").dialog("open");
         });
     });
-
+    getSpecies();
+}
+function onModificationClick(){
     $(function() {
         $("#modificationDialog").dialog({
             autoOpen: false,
@@ -127,9 +161,6 @@ function onCreate() {
         $("#modificationDialog").dialog({
             closeText: ""
         });
-
-        $("#modificationOpener").on("click", function() {
-            $("#modificationDialog").dialog("open");
-        });
+        $("#modificationDialog").dialog("open"); 
     });
 }

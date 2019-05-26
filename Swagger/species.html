@@ -16,9 +16,20 @@
 </head>
 
 <body>
-
+    <div class="container col-sm-12 text-center">
+        <h2>Specimen types</h2>
+        <table id="speciesListTable" class="display">
+            <thead>
+                <th data-sortable="true" data-field="id">Specimen ID</th>
+                <th data-field="name">Name</th>
+                <th data-field="description">Description</th>
+                <th data-field=""></th>
+                <th data-field=""></th>
+            </thead>
+        </table>
+    </div>
     <div class="row">
-        <div class="col-sm-6">
+        <div hidden class="col-sm-6">
             <div id="divCreateSpecimen" class="container-fluid">
                 <div id="creationDialog" title="Create a new specimen">
                     <div class="row">
@@ -39,12 +50,12 @@
                         </div>
                     </div>
                 </div>
-                <button id="creationOpener" class="btn btn-primary btn-lg btn-block">Create new specimen</button>
+                <button id="creationOpener" class="btn btn-primary btn-lg btn-block">Create new specimen</button>-->
             </div>
         </div>
-        <div class="col-sm-6">
+        <div hidden class="col-sm-6">
             <div class="container-fluid">
-                <div id="modificationDialog" title="Create a new specimen">
+                <div id="modificationDialog" title="Modify an existing specimen">
                     <div class="row">
                         <div class="col-sm-6">
                             <p>Set ID of specimen </p>
@@ -65,27 +76,11 @@
                         </div>
                     </div>
                 </div>
-                <button id="modificationOpener" class="btn btn-primary btn-lg btn-block">Modify specimen</button>
+                <!--<button id="modificationOpener" class="btn btn-primary btn-lg btn-block">Modify specimen</button>-->
             </div>
         </div>
-    </div>
-    <div class="col-sm-12">
-        <button id="getButton" class="btn btn-primary" onclick="getSpecies()">Get species list</button>
-    </div>
-    <div class="container col-sm-12 text-center">
-        <h2>Specimen types</h2>
-        <table id="speciesListTable" class="display">
-            <thead>
-                <th data-sortable="true" data-field="id">Specimen ID</th>
-                <th data-field="name">Name</th>
-                <th data-field="description">Description</th>
-                <th data-field=""></th>
-            </thead>
-        </table>
-    </div>
+</body>
     <script>
         onCreate();
     </script>
-</body>
-
 </html>
