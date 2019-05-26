@@ -68,25 +68,32 @@ function getSpecies() {
         $(document).ready(function() {
             $('#speciesListTable').DataTable({
                 data: dataSet,
+                columns: [
+                    {"dataSet": "id"},
+                    {"dataSet": "name"},
+                    {"dataSet": "description"},
+                ],
                 "columnDefs": [{
                     "targets": 3,
                     "data": null,
-                    "defaultContent": '<button id="modificationOpener" onClick="onModificationClick()" class="edit-button btn btn-lg btn-block">Edit</button>'
+                    "defaultContent": '<button id="modificationOpener" onClick="onModificationClick(this)" class="edit-button btn btn-lg btn-block">Edit</button>'
                 },
                 {
                     "targets": 4,
                     "data": null,
-                    "defaultContent": '<button id="deletionOpener" onClick="onDeletionClick(1903)" class="btn btn-lg btn-block">Remove</button>'
+                    "defaultContent": '<button id="deletionOpener" onClick="onDeletionClick(this)" class="btn btn-lg btn-block">Remove</button>'
                 }]
-            });
-            $('#speciesListTable tbody').on( 'click', 'column', function () {
-                var data = table.row( $(this).parents('tr') ).data();
-                alert(data);
             });
         });
     }
 }
-function onDeletionClick(id){
+function onDeletionClick(button){
+    $('#speciesListTable tbody').on( 'click', 'button', function () {
+        var data = $('#speciesListTable').DataTable().row($(button).parents('tr')).data();
+        startDeletion(data.id);
+    });
+}
+function startDeletion(id){
     var url = "http://81.2.241.234:8080/species/"+id;
 
     //var name = document.getElementById("txtNameCreateHero").value;
