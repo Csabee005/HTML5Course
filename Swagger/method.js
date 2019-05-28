@@ -84,6 +84,13 @@ function getSpecies() {
                     { "dataSet": "description" },
                 ],
                 "columnDefs": [{
+                        "targets": 0,
+                        "dataSet": "id",
+                        "render": function ( data, type, row, meta ) {
+                            return '<button id="linkButton">'+data+'</a>'
+                        }
+                    },
+                    {
                         "targets": 3,
                         "data": null,
                         "defaultContent": '<button id="modificationOpener" onClick="onModificationClick(this)" class="edit-button btn btn-lg btn-block">Edit</button>'
@@ -208,6 +215,8 @@ function onRemovalDialog(button) {
             autoOpen: false,
             resizable: false,
             closeText: "",
+            minWidth: 500,
+            minHeight: 200,
             modal: true,
             show: {
                 effect: "scale",
@@ -220,12 +229,6 @@ function onRemovalDialog(button) {
         }).prev(".ui-dialog-titlebar").css("background", getComputedStyle(document.documentElement)
             .getPropertyValue('--alternative-accent-color-dark-sky-blue'));
 
-        $("#deletionDialog").dialog({
-            minWidth: 500
-        });
-        $("#deletionDialog").dialog({
-            minHeight: 225
-        });
         $("#deletionDialog").dialog("open");
     });
     var btnCancel = document.getElementById("btnCancelSpecimenRemoval");
@@ -235,5 +238,28 @@ function onRemovalDialog(button) {
     }
     btnCancel.onclick = function() {
         $("#deletionDialog").dialog("close");
+    }
+}
+
+function getDetailedSpecimen(data){
+    if(!($("#deletionDialog").hasClass("ui-dialog-content")) && !($("#modificationDialog").hasClass("ui-dialog-content"))){
+        $("#specimenDataDialog").dialog({
+            autoOpen: false,
+            resizable: false,
+            closeText: "",
+            minWidth: 500,
+            minHeight: 500,
+            modal: true,
+            show: {
+                effect: "scale",
+                duration: 300
+            },
+            hide: {
+                effect: "clip",
+                duration: 300
+            }
+        }).prev(".ui-dialog-titlebar").css("background", getComputedStyle(document.documentElement)
+        .getPropertyValue('--alternative-accent-color-dark-sky-blue'));
+        $("#specimenDataDialog").dialog("open");
     }
 }
