@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.10.3/themes/cupertino/jquery-ui.css" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="method.js"></script>
+    <script type="text/javascript" src="heromethod.js"></script>
 
 </head>
 
@@ -28,12 +28,12 @@
                       <span class="icon-bar"></span>
                       <span class="icon-bar"></span> 
                     </button>
-                    <a class="navbar-brand" href="#">Species</a>
+                    <a class="navbar-brand" href="#">Heroes</a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="species.html">Specimen list</a></li>
+                        <li class="active"><a href="species.html">Hero list</a></li>
                         <li><a href="heroes.html">Hero list</a></li>
                         <li><a href="#">About</a></li>
                     </ul>
@@ -48,12 +48,12 @@
     <div id="main">
         <div class="container col-sm-12 text-center">
             <div class="header">
-                <h1 id="titleh1" class="title-header">Specimen list</h1>
+                <h1 id="titleh1" class="title-header">Hero list</h1>
             </div>
             <button id="btnAddSpecimen"></button>
             <table id="speciesListTable" class="display">
                 <thead>
-                    <th data-sortable="true" data-field="id">Specimen ID</th>
+                    <th data-sortable="true" data-field="id">Hero ID</th>
                     <th data-field="name">Name</th>
                     <th data-field="description">Description</th>
                     <th data-field=""></th>
@@ -63,11 +63,11 @@
         </div>
         <div class="row">
             <div hidden class="col-sm-6">
-                <div id="divCreateSpecimen" class="container-fluid">
-                    <div id="creationDialog" title="Create a new specimen">
+                <div id="divCreateHero" class="container-fluid">
+                    <div id="creationDialog" title="Create a new hero">
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Name your specimen</p>
+                                <p>Name your hero</p>
                             </div>
                             <div class="col-sm-6">
                                 <p><input type="text" id="txtNameCreateHero" /></p>
@@ -75,7 +75,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-6">
-                                <p>Provide a description for your specimen</p>
+                                <p>Provide a description for your hero</p>
                             </div>
                             <div class="col-sm-6">
                                 <p><input type="text" id="txtDescriptionCreateHero"></p>
@@ -83,7 +83,7 @@
                         </div>
                         <div class="text-center row">
                             <div class="col text-center">
-                                <p><button id="btn1" class="btn button-accept-default" onclick="postSpecimen()">Create specimen</button></p>
+                                <p><button id="btn1" class="btn button-accept-default" onclick="postHero()">Create hero</button></p>
                                 <p id="txtSuccessCreation" class="text-success"></p>
                                 <p id="txtFailureCreation" class="text-danger"></p>
                             </div>
@@ -95,34 +95,34 @@
     </div>
     <div hidden class="col-sm-6">
         <div class="container-fluid">
-            <div id="modificationDialog" title="Modify an existing specimen">
+            <div id="modificationDialog" title="Modify an existing hero">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Set ID of specimen </p>
+                        <p>Set ID of hero </p>
                     </div>
                     <div class="col-sm-6">
-                        <p><input type="text" id="txtIDModifySpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtIDModifyHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Rename your specimen</p>
+                        <p>Rename your hero</p>
                     </div>
                     <div class="col-sm-6">
-                        <p><input type="text" id="txtNameModifySpecimen" /></p>
+                        <p><input type="text" id="txtNameModifyHero" /></p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Provide an updated description for your specimen</p>
+                        <p>Provide an updated description for your hero</p>
                     </div>
                     <div class="col-sm-6">
-                        <p><input type="text" id="txtDescriptionModifySpecimen"></p>
+                        <p><input type="text" id="txtDescriptionModifyHero"></p>
                     </div>
                 </div>
                 <div class="row text-center">
                     <div class="col-sm-12">
-                        <button id="btnModifySpecimen" class="btn button-accept-default">Modify specimen</button>
+                        <button id="btnModifyHero" class="btn button-accept-default">Modify hero</button>
                     </div>
                 </div>
                 <div class="text-center row">
@@ -139,16 +139,16 @@
     </div>
     <div hidden class="col-sm-6">
         <div class="container-fluid">
-            <div id="deletionDialog" title="Delete an existing specimen">
+            <div id="deletionDialog" title="Delete an existing hero">
                 <div class="row">
-                    <h4 class="removal-text">Are you sure you want to remove this specimen?</h4>
+                    <h4 class="removal-text">Are you sure you want to remove this hero?</h4>
                 </div>
                 <div class="row text-center">
                     <div class="col-sm-6">
-                        <button id="btnCancelSpecimenRemoval" class="btn btn-lg btn-block">Cancel</button>
+                        <button id="btnCancelHeroRemoval" class="btn btn-lg btn-block">Cancel</button>
                     </div>
                     <div class="col-sm-6">
-                        <button id="btnAcceptSpecimenRemoval" class="btn btn-lg btn-block">Accept</button>
+                        <button id="btnAcceptHeroRemoval" class="btn btn-lg btn-block">Accept</button>
                     </div>
                 </div>
                 <div class=" row text-center">
@@ -162,13 +162,13 @@
     </div>
     <div hidden class="col-sm-6">
         <div class="container-fluid">
-            <div id="specimenDataDialog" title="View specimen data">
+            <div id="heroDataDialog" title="View hero data">
                 <div class="row text-center">
                     <div class="col col-sm-6">
                         <p>ID </p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtIDViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtIDViewHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -176,7 +176,7 @@
                         <p>Name </p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtNameViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtNameViewHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -184,7 +184,7 @@
                         <p>Description </p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtDescriptionViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtDescriptionViewHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -192,7 +192,7 @@
                         <p>Links</p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtLinksViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtLinksViewHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -200,7 +200,7 @@
                         <p>Uri</p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtUriViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtUriViewHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -208,55 +208,7 @@
                         <p>Title</p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtTitleViewSpecimen" disabled="true" /></p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col col-sm-6">
-                        <p>Port </p>
-                    </div>
-                    <div class="col col-sm-6">
-                        <p><input type="text" id="txtPortViewSpecimen" disabled="true" /></p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col col-sm-6">
-                        <p>Host </p>
-                    </div>
-                    <div class="col col-sm-6">
-                        <p><input type="text" id="txtHostViewSpecimen" disabled="true" /></p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col col-sm-6">
-                        <p>Scheme </p>
-                    </div>
-                    <div class="col col-sm-6">
-                        <p><input type="text" id="txtSchemeViewSpecimen" disabled="true" /></p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col col-sm-6">
-                        <p>User information </p>
-                    </div>
-                    <div class="col col-sm-6">
-                        <p><input type="text" id="txtUserInfoViewSpecimen" disabled="true" /></p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col col-sm-6">
-                        <p>Query </p>
-                    </div>
-                    <div class="col col-sm-6">
-                        <p><input type="text" id="txtQueryViewSpecimen" disabled="true" /></p>
-                    </div>
-                </div>
-                <div class="row text-center">
-                    <div class="col col-sm-6">
-                        <p>Fragment </p>
-                    </div>
-                    <div class="col col-sm-6">
-                        <p><input type="text" id="txtFragmentViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtTitleViewHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -264,7 +216,7 @@
                         <p>Rel</p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtRelViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtRelViewHero" disabled="true" /></p>
                     </div>
                 </div>
                 <div class="row text-center">
@@ -272,7 +224,7 @@
                         <p>Type</p>
                     </div>
                     <div class="col col-sm-6">
-                        <p><input type="text" id="txtTypeViewSpecimen" disabled="true" /></p>
+                        <p><input type="text" id="txtTypeViewHero" disabled="true" /></p>
                     </div>
                 </div>
             </div>
@@ -286,7 +238,6 @@
     </div>
     </div>
 </body>
-</div>
 <script>
     onCreate();
 </script>

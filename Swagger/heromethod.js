@@ -1,21 +1,21 @@
-function getDetailedSpecimenData(id) {
-    var url = "http://81.2.241.234:8080/species/" + id;
+function getDetailedHeroData(id) {
+    var url = "http://81.2.241.234:8080/hero/" + id;
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    request.addEventListener('load', reqDetailedSpecimenListener);
+    request.addEventListener('load', reqDetailedHeroListener);
     request.send();
 
-    function reqDetailedSpecimenListener() {
+    function reqDetailedHeroListener() {
         if (request.status == 200) {
-            showDetailerSpecimenData(JSON.parse(request.responseText));
+            showDetailerHeroData(JSON.parse(request.responseText));
         } else {}
     }
 }
 
-function postSpecimen() {
-    var url = "http://81.2.241.234:8080/species";
+function postHero() {
+    var url = "http://81.2.241.234:8080/hero";
 
     var name = document.getElementById("txtNameCreateHero").value;
     var description = document.getElementById("txtDescriptionCreateHero").value;
@@ -34,10 +34,10 @@ function postSpecimen() {
     function reqPostListener() {
         if (request.status == 200) {
             failureText.innerHTML = "";
-            successText.innerHTML = "Specimen creation succesful with " + request.responseText + " as response.";
+            successText.innerHTML = "Hero creation succesful with " + request.responseText + " as response.";
         } else {
             successText.innerHTML = "";
-            failureText.innerHTML = "Failed to create specimen!";
+            failureText.innerHTML = "Failed to create hero!";
         }
         document.getElementById("txtNameCreateHero").value = "";
         document.getElementById("txtDescriptionCreateHero").value = "";
@@ -45,9 +45,9 @@ function postSpecimen() {
     }
 }
 
-function putSpecimen(id, name, description) {
+function putHero(id, name, description) {
 
-    var url = "http://81.2.241.234:8080/species/" + id;
+    var url = "http://81.2.241.234:8080/hero/" + id;
     params = 'name=' + name + '&desc=' + description;
     var request = new XMLHttpRequest();
     request.open('PUT', url, true);
@@ -62,17 +62,17 @@ function putSpecimen(id, name, description) {
     function reqPutListener() {
         if (request.status == 200) {
             failureText.innerHTML = "";
-            successText.innerHTML = "Specimen update succesful with " + request.responseText + " as response.";
+            successText.innerHTML = "Hero update succesful with " + request.responseText + " as response.";
             getSpecies();
         } else {
             successText.innerHTML = "";
-            failureText.innerHTML = "Failed to update specimen!";
+            failureText.innerHTML = "Failed to update hero!";
         }
     }
 }
 
 function getSpecies() {
-    var url = "http://81.2.241.234:8080/species?start=0&count=100&orderfield=id&orderdirection=ASC";
+    var url = "http://81.2.241.234:8080/hero?start=0&count=100&orderfield=id&orderdirection=ASC";
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -103,7 +103,7 @@ function getSpecies() {
                         "targets": 0,
                         "dataSet": "id",
                         "render": function(data, type, row, meta) {
-                            return '<button id="linkButton" class="edit-button btn btn-lg btn-block" onclick="getDetailedSpecimen(this)">' + data + '</a>'
+                            return '<button id="linkButton" class="edit-button btn btn-lg btn-block" onclick="getDetailedHero(this)">' + data + '</a>'
                         }
                     },
                     {
@@ -122,19 +122,19 @@ function getSpecies() {
     }
 }
 
-function getSpecimenData(button) {
+function getHeroData(button) {
     var data = $('#speciesListTable').DataTable().row($(button).parents('tr')).data();
     return data;
 };
 
 
-function onDeletionAccepted(button, failureText, successText) {
+function onDeletionAccepted(button) {
     var data = $('#speciesListTable').DataTable().row($(button).parents('tr')).data();
-    startDeletion(data[0], failureText, successText);
+    startDeletion(data[0]);
 };
 
-function startDeletion(id, failureText, successText) {
-    var url = "http://81.2.241.234:8080/species/" + id;
+function startDeletion(id) {
+    var url = "http://81.2.241.234:8080/hero/" + id;
 
     var request = new XMLHttpRequest();
     request.open('DELETE', url, true);
@@ -142,16 +142,18 @@ function startDeletion(id, failureText, successText) {
     request.addEventListener('load', reqDeleteListener);
     request.send();
 
+    var successText = document.getElementById("txtSuccessDeletion");
+    var failureText = document.getElementById("txtFailureCreation");
     failureText.innerHTML = "";
     successText.innerHTML = "";
 
     function reqDeleteListener() {
         if (request.status == 200) {
             failureText.innerHTML = "";
-            successText.innerHTML = "Specimen deleted succesfully.";
+            successText.innerHTML = "Hero deleted succesfully.";
         } else {
             successText.innerHTML = "";
-            failureText.innerHTML = "Failed to delete specimen!";
+            failureText.innerHTML = "Failed to delete hero!";
         }
         getSpecies();
     }
@@ -208,16 +210,16 @@ function onModificationClick(button) {
             minWidth: 500
         });
         $("#modificationDialog").dialog("open");
-        var data = getSpecimenData(button);
-        var txtSpecimenIDModification = document.getElementById("txtIDModifySpecimen");
-        txtSpecimenIDModification.value = data[0];
-        document.getElementById("txtNameModifySpecimen").value = "";
-        document.getElementById("txtDescriptionModifySpecimen").value = "";
-        var btnModifySpecimen = document.getElementById("btnModifySpecimen");
-        btnModifySpecimen.onclick = function() {
-            var name = document.getElementById("txtNameModifySpecimen").value;
-            var description = document.getElementById("txtDescriptionModifySpecimen").value;
-            putSpecimen(data[0], name, description);
+        var data = getHeroData(button);
+        var txtHeroIDModification = document.getElementById("txtIDModifyHero");
+        txtHeroIDModification.value = data[0];
+        document.getElementById("txtNameModifyHero").value = "";
+        document.getElementById("txtDescriptionModifyHero").value = "";
+        var btnModifyHero = document.getElementById("btnModifyHero");
+        btnModifyHero.onclick = function() {
+            var name = document.getElementById("txtNameModifyHero").value;
+            var description = document.getElementById("txtDescriptionModifyHero").value;
+            putHero(data[0], name, description);
         }
     });
 }
@@ -242,56 +244,41 @@ function onRemovalDialog(button) {
 
         $("#deletionDialog").dialog("open");
     });
-    var successText = document.getElementById("txtSuccessDeletion");
-    var failureText = document.getElementById("txtFailureCreation");
-    var btnCancel = document.getElementById("btnCancelSpecimenRemoval");
-    var btnOk = document.getElementById("btnAcceptSpecimenRemoval");
-
+    var btnCancel = document.getElementById("btnCancelHeroRemoval");
+    var btnOk = document.getElementById("btnAcceptHeroRemoval");
     btnOk.onclick = function() {
-        onDeletionAccepted(button, failureText, successText);
+        onDeletionAccepted(button);
     }
     btnCancel.onclick = function() {
         $("#deletionDialog").dialog("close");
     }
 }
 
-async function getDetailedSpecimen(button) {
-    var data = getSpecimenData(button);
-    getDetailedSpecimenData(data[0]);
+async function getDetailedHero(button) {
+    var data = getHeroData(button);
+    getDetailedHeroData(data[0]);
 }
 
-function showDetailerSpecimenData(specimen) {
-    var txtIDViewSpecimen = document.getElementById("txtIDViewSpecimen");
-    var txtNameViewSpecimen = document.getElementById("txtNameViewSpecimen");
-    var txtDescriptionViewSpecimen = document.getElementById("txtDescriptionViewSpecimen");
-    var txtLinksViewSpecimen = document.getElementById("txtLinksViewSpecimen");
-    var txtUriViewSpecimen = document.getElementById("txtUriViewSpecimen");
-    var txtTitleViewSpecimen = document.getElementById("txtTitleViewSpecimen");
-    var txtPortViewSpecimen = document.getElementById("txtPortViewSpecimen");
-    var txtRelViewSpecimen = document.getElementById("txtRelViewSpecimen");
-    var txtTypeViewSpecimen = document.getElementById("txtTypeViewSpecimen");
-    var txtHostViewSpecimen = document.getElementById("txtHostViewSpecimen");
-    var txtSchemeViewSpecimen = document.getElementById("txtSchemeViewSpecimen");
-    var txtUserInfoViewSpecimen = document.getElementById("txtUserInfoViewSpecimen");
-    var txtQueryViewSpecimen = document.getElementById("txtQueryViewSpecimen");
-    var txtFragmentViewSpecimen = document.getElementById("txtFragmentViewSpecimen");
+function showDetailerHeroData(hero) {
+    var txtIDViewHero = document.getElementById("txtIDViewHero");
+    var txtNameViewHero = document.getElementById("txtNameViewHero");
+    var txtDescriptionViewHero = document.getElementById("txtDescriptionViewHero");
+    var txtLinksViewHero = document.getElementById("txtLinksViewHero");
+    var txtUriViewHero = document.getElementById("txtUriViewHero");
+    var txtTitleViewHero = document.getElementById("txtTitleViewHero");
+    var txtRelViewHero = document.getElementById("txtRelViewHero");
+    var txtTypeViewHero = document.getElementById("txtTypeViewHero");
 
-    txtIDViewSpecimen.value = specimen.id;
-    txtNameViewSpecimen.value = specimen.name;
-    txtDescriptionViewSpecimen.value = specimen.description;
-    txtLinksViewSpecimen.value = specimen.links[0];
-    txtUriViewSpecimen.value = specimen.links[0].uri;
-    txtTitleViewSpecimen.value = specimen.links[0].title;
-    txtPortViewSpecimen.value = specimen.links[0].uriBuilder.port;
-    txtHostViewSpecimen.value = specimen.links[0].uriBuilder.host;
-    txtSchemeViewSpecimen.value = specimen.links[0].uriBuilder.scheme;
-    txtUserInfoViewSpecimen.value = specimen.links[0].uriBuilder.userInfo;
-    txtQueryViewSpecimen.value = specimen.links[0].uriBuilder.query;
-    txtFragmentViewSpecimen.value = specimen.links[0].uriBuilder.fragment;
-    txtRelViewSpecimen.value = specimen.links[0].rel;
-    txtTypeViewSpecimen.value = specimen.links[0].type;
+    txtIDViewHero.value = hero.id;
+    txtNameViewHero.value = hero.name;
+    txtDescriptionViewHero.value = hero.description;
+    txtLinksViewHero.value = hero.links[0];
+    txtUriViewHero.value = hero.links[0].uri;
+    txtTitleViewHero.value = hero.links[0].title;
+    txtRelViewHero.value = hero.links[0].rel;
+    txtTypeViewHero.value = hero.links[0].type;
 
-    $("#specimenDataDialog").dialog({
+    $("#heroDataDialog").dialog({
         autoOpen: false,
         resizable: false,
         closeText: "",
@@ -307,5 +294,5 @@ function showDetailerSpecimenData(specimen) {
         }
     }).prev(".ui-dialog-titlebar").css("background", getComputedStyle(document.documentElement)
         .getPropertyValue('--alternative-accent-color-dark-sky-blue'));
-    $("#specimenDataDialog").dialog("open");
+    $("#heroDataDialog").dialog("open");
 }
