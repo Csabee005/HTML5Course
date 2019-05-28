@@ -6,43 +6,52 @@
     --third-color-columbia-blue: #C0D6DF;
 }
 
-.navbar-site{
-	background-color: var(--alternative-color-paynes-grey);
+.navbar-site {
+    background-color: var(--alternative-color-paynes-grey);
 }
+
 .nav.navbar-nav.navbar-right li a {
     color: var(--secondary-color-nyanza-light);
 }
+
 .nav.navbar-nav li a {
     color: var(--secondary-color-nyanza-light);
 }
+
 .nav.navbar-nav.navbar-right li a:focus {
     background-color: var(--alternative-color-paynes-grey);
 }
+
 .nav.navbar-nav li a:focus {
     background-color: var(--alternative-color-paynes-grey);
 }
+
 .nav.navbar-nav.navbar-right li a:hover {
     background-color: var(--main-color-steel-teal);
 }
+
 .nav.navbar-nav li a:hover {
     background-color: var(--main-color-steel-teal);
 }
-.navbar-brand{
-	color:var(--secondary-color-nyanza-light);
+
+.navbar-brand {
+    color: var(--secondary-color-nyanza-light);
 }
-.navbar-brand:hover{
-	color: var(--third-color-columbia-blue);
+
+.navbar-brand:hover {
+    color: var(--third-color-columbia-blue);
 }
-.navbar-brand:focus{
-	color: var(--secondary-color-nyanza-light);
+
+.navbar-brand:focus {
+    color: var(--secondary-color-nyanza-light);
 }
 
 #divCreateSpecimen {
     background-color: rgb(230, 255, 255);
 }
 
-.button-accept-default{
-	background-color: var(--alternative-accent-color-dark-sky-blue);
+.button-accept-default {
+    background-color: var(--alternative-accent-color-dark-sky-blue);
 }
 
 #modificationOpener {
@@ -89,8 +98,8 @@
     color: white;
 }
 
-#titleh1{
-	font-size: 48px;
+#titleh1 {
+    font-size: 48px;
 }
 
 .title-header {
@@ -103,7 +112,7 @@
 }
 
 #btnAddSpecimen {
-    background-image: url("/res/svg_images/icon_add.svg");
+    background-image: url("/Swagger/res/svg_images/icon_add.svg");
     background-color: transparent;
     background-repeat: no-repeat;
     border-color: transparent;
@@ -115,24 +124,26 @@
     outline: none !important;
 }
 
-th{
-	font-size: 22px;
-}
-tr{
-	font-size: 18px;
+th {
+    font-size: 22px;
 }
 
-#speciesListTable tbody tr{
-	max-height: 20px;
-	overflow:hidden;
-	word-wrap:break-word; 
+tr {
+    font-size: 18px;
+}
+
+#speciesListTable tbody tr {
+    max-height: 20px;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 body {
-	padding-top: 70px;
-  }
-  @media (max-width: 500px) {
-	body {
-	  padding-top: 50px;
-	}
-  }
+    padding-top: 50px;
+}
+
+@media (max-width: 500px) {
+    body {
+        padding-top: 35px;
+    }
+}

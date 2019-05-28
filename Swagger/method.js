@@ -1,3 +1,19 @@
+function getDetailedSpecimenData(id) {
+    var url = "http://81.2.241.234:8080/species/" + id;
+
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    request.addEventListener('load', reqDetailedSpecimenListener);
+    request.send();
+
+    function reqDetailedSpecimenListener() {
+        if (request.status == 200) {
+            showDetailerSpecimenData(JSON.parse(request.responseText));
+        } else {}
+    }
+}
+
 function postSpecimen() {
     var url = "http://81.2.241.234:8080/species";
 
@@ -86,8 +102,8 @@ function getSpecies() {
                 "columnDefs": [{
                         "targets": 0,
                         "dataSet": "id",
-                        "render": function ( data, type, row, meta ) {
-                            return '<button id="linkButton">'+data+'</a>'
+                        "render": function(data, type, row, meta) {
+                            return '<button id="linkButton" class="edit-button btn btn-lg btn-block" onclick="getDetailedSpecimen(this)">' + data + '</a>'
                         }
                     },
                     {
@@ -162,7 +178,7 @@ function onCreate() {
             .getPropertyValue('--alternative-accent-color-dark-sky-blue'));
 
         $("#creationDialog").dialog({
-            minWidth: 700
+            minWidth: 500
         });
 
         $("#btnAddSpecimen").on("click", function() {
@@ -191,13 +207,12 @@ function onModificationClick(button) {
             .getPropertyValue('--alternative-accent-color-dark-sky-blue'));
 
         $("#modificationDialog").dialog({
-            minWidth: 600
+            minWidth: 500
         });
         $("#modificationDialog").dialog("open");
         var data = getSpecimenData(button);
         var txtSpecimenIDModification = document.getElementById("txtIDModifySpecimen");
         txtSpecimenIDModification.value = data[0];
-        txtSpecimenIDModification.disabled = true;
         document.getElementById("txtNameModifySpecimen").value = "";
         document.getElementById("txtDescriptionModifySpecimen").value = "";
         var btnModifySpecimen = document.getElementById("btnModifySpecimen");
@@ -215,8 +230,6 @@ function onRemovalDialog(button) {
             autoOpen: false,
             resizable: false,
             closeText: "",
-            minWidth: 500,
-            minHeight: 200,
             modal: true,
             show: {
                 effect: "scale",
@@ -241,25 +254,57 @@ function onRemovalDialog(button) {
     }
 }
 
-function getDetailedSpecimen(data){
-    if(!($("#deletionDialog").hasClass("ui-dialog-content")) && !($("#modificationDialog").hasClass("ui-dialog-content"))){
-        $("#specimenDataDialog").dialog({
-            autoOpen: false,
-            resizable: false,
-            closeText: "",
-            minWidth: 500,
-            minHeight: 500,
-            modal: true,
-            show: {
-                effect: "scale",
-                duration: 300
-            },
-            hide: {
-                effect: "clip",
-                duration: 300
-            }
-        }).prev(".ui-dialog-titlebar").css("background", getComputedStyle(document.documentElement)
+async function getDetailedSpecimen(button) {
+    var data = getSpecimenData(button);
+    getDetailedSpecimenData(data[0]);
+}
+
+function showDetailerSpecimenData(specimen) {
+    var txtIDViewSpecimen = document.getElementById("txtIDViewSpecimen");
+    var txtNameViewSpecimen = document.getElementById("txtNameViewSpecimen");
+    var txtDescriptionViewSpecimen = document.getElementById("txtDescriptionViewSpecimen");
+    var txtLinksViewSpecimen = document.getElementById("txtLinksViewSpecimen");
+    var txtUriViewSpecimen = document.getElementById("txtUriViewSpecimen");
+    var txtTitleViewSpecimen = document.getElementById("txtTitleViewSpecimen");
+    var txtPortViewSpecimen = document.getElementById("txtPortViewSpecimen");
+    var txtRelViewSpecimen = document.getElementById("txtRelViewSpecimen");
+    var txtTypeViewSpecimen = document.getElementById("txtTypeViewSpecimen");
+    var txtHostViewSpecimen = document.getElementById("txtHostViewSpecimen");
+    var txtSchemeViewSpecimen = document.getElementById("txtSchemeViewSpecimen");
+    var txtUserInfoViewSpecimen = document.getElementById("txtUserInfoViewSpecimen");
+    var txtQueryViewSpecimen = document.getElementById("txtQueryViewSpecimen");
+    var txtFragmentViewSpecimen = document.getElementById("txtFragmentViewSpecimen");
+
+    txtIDViewSpecimen.value = specimen.id;
+    txtNameViewSpecimen.value = specimen.name;
+    txtDescriptionViewSpecimen.value = specimen.description;
+    txtLinksViewSpecimen.value = specimen.links[0];
+    txtUriViewSpecimen.value = specimen.links[0].uri;
+    txtTitleViewSpecimen.value = specimen.links[0].title;
+    txtPortViewSpecimen.value = specimen.links[0].uriBuilder.port;
+    txtHostViewSpecimen.value = specimen.links[0].uriBuilder.host;
+    txtSchemeViewSpecimen.value = specimen.links[0].uriBuilder.scheme;
+    txtUserInfoViewSpecimen.value = specimen.links[0].uriBuilder.userInfo;
+    txtQueryViewSpecimen.value = specimen.links[0].uriBuilder.query;
+    txtFragmentViewSpecimen.value = specimen.links[0].uriBuilder.fragment;
+    txtRelViewSpecimen.value = specimen.links[0].rel;
+    txtTypeViewSpecimen.value = specimen.links[0].type;
+
+    $("#specimenDataDialog").dialog({
+        autoOpen: false,
+        resizable: false,
+        closeText: "",
+        minWidth: 500,
+        modal: true,
+        show: {
+            effect: "scale",
+            duration: 300
+        },
+        hide: {
+            effect: "clip",
+            duration: 300
+        }
+    }).prev(".ui-dialog-titlebar").css("background", getComputedStyle(document.documentElement)
         .getPropertyValue('--alternative-accent-color-dark-sky-blue'));
-        $("#specimenDataDialog").dialog("open");
-    }
+    $("#specimenDataDialog").dialog("open");
 }
