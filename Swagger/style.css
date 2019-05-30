@@ -26,6 +26,10 @@
     background-color: var(--alternative-color-paynes-grey);
 }
 
+.nav.navbar-nav li a:enabled {
+    background-color: var(--alternative-color-paynes-grey);
+}
+
 .nav.navbar-nav.navbar-right li a:hover {
     background-color: var(--main-color-steel-teal);
 }
@@ -265,6 +269,10 @@ pre a:focus{
     animation-fill-mode: both;
 }
 
+#registerDropdown{
+    padding: 15px;
+}
+
 .cssanimation span { display: inline-block }
 
 .fadeInBottom { animation-name: fadeInBottom }
@@ -275,3 +283,51 @@ pre a:focus{
     }
     to { opacity: 1 }
 }
+
+/* Change this breakpoint if you change the breakpoint of the navbar */
+
+@media (min-width: 992px) {
+    .animate {
+      animation-duration: 1s;
+      -webkit-animation-duration: 1s;
+      animation-fill-mode: both;
+      -webkit-animation-fill-mode: both;
+    }
+  }
+  
+  @keyframes slideIn {
+    0% {opacity: 0;
+        transform: translateY(-5%);
+    }
+    100% {
+      transform:translateY(0rem);
+      opacity: 1;
+    }
+    0% {opacity: 0;
+        transform: translateY(-5%);
+    }
+  }
+  
+  @-webkit-keyframes slideIn {
+    0% {
+      -webkit-transform: transform;
+      -webkit-opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateY(0);
+      -webkit-opacity: 1;
+    }
+    0% {
+      -webkit-transform: translateY(1rem);
+      -webkit-opacity: 0;
+    }
+  }
+  
+  .slideIn {
+    -webkit-animation-name: slideIn;
+    animation-name: slideIn;
+  }
+
+  #indexBody{
+    overflow-y:hidden;  
+  }
