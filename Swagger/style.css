@@ -112,7 +112,7 @@
 }
 
 #btnAddSpecimen {
-    background-image: url("/Swagger/res/svg_images/icon_add.svg");
+    background-image: url("/res/svg_images/icon_add.svg");
     background-color: transparent;
     background-repeat: no-repeat;
     border-color: transparent;
@@ -138,8 +138,27 @@ tr {
     word-wrap: break-word;
 }
 
-body {
+html, body {
+    height: 100%;
+  }
+  body {
+    display: flex;
+    flex-direction: column;
     padding-top: 50px;
+  }
+  .content {
+    flex: 1 0 auto;
+    background-color: black;
+  }
+  .footer {
+    flex-shrink: 0;
+  }
+
+
+.bottom-bar{
+    color: white;
+    background-color: var(--alternative-color-paynes-grey);
+    padding: 5px;
 }
 
 @media (max-width: 500px) {
@@ -147,3 +166,94 @@ body {
         padding-top: 35px;
     }
 }
+
+@media (max-width: 500px) {
+
+    .navbar-brand {
+        color: var(--secondary-color-nyanza-light);
+    }
+
+    #logoIcon{
+        max-width: 50px;
+        max-height: 50px;
+    }
+}
+
+@media (min-width: 768px) {
+    .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+
+    .navbar .navbar-collapse {
+        text-align: center;
+    }
+}
+
+#logoIcon{
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.pre{
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    font-size: 14px;
+    background-color: var(--alternative-color-paynes-grey);
+    padding: 0px;
+    border-width: 0px;
+}
+
+pre a{
+    color: lightgray;
+}
+
+pre a:hover{
+    color: var(--secondary-color-nyanza-light);
+}
+
+pre a:focus{
+    color: var(--secondary-color-nyanza-light);
+}
+
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    top:0;
+    height: 85%;
+    width: 100%;
+    object-fit: contain;
+  }
+  
+  /* Add some content at the bottom of the video/page */
+  .video-content {
+    position: absolute;
+    bottom: 40px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #f1f1f1;
+    width: 100%;
+  }
+
+  .left-controls{
+    position: fixed;
+    float: left;
+  }
+  
+  /* Style the button used to pause/play the video */
+  .controlBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+  }
+  .controlBtn:focus{
+      outline: transparent;
+  }
+  
+  #myBtn:hover {
+    background: #ddd;
+    color: black;
+  }

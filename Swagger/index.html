@@ -24,23 +24,61 @@
                               <span class="icon-bar"></span>
                               <span class="icon-bar"></span> 
                             </button>
-                    <a class="navbar-brand" href="#">Index</a>
+                    <a class="navbar-brand-icon" href="#"><img id="logoIcon" src="/res/svg_images/icon_logo.svg"/></a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li class="active"><a href="species.html">Specimen list</a></li>
-                        <li><a href="heroes.html">Hero list</a></li>
-                        <li><a href="#">About</a></li>
+                        <li><a href="index.html">Játékosoknak</a></li>
+                        <li class="active"><a href="species.html">Fejlesztőknek</a></li>
+                        <li><a href="heroes.html">Rólunk</a></li>
+                        <li><a href="#">Kapcsolatok</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-user"></span>Regisztráció</a></li>
+                        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span>Belépés</a></li>
                     </ul>
                 </div>
             </div>
         </nav>
     </div>
+    <div class="content">
+        <video autoplay onclick="pauseButtonFunction()" loop id="myVideo">
+            <source src="res/mp4_videos/video_index.mp4" type="video/mp4">
+            </video>
+        <div class="video-content">
+                <h1>Heroes of Empires</h1>
+                <p>The battle is not yet lost for the horde. Help your fellows rebuild their future, and forget their past.</p>
+                <p>Join them on this epic adventure by D&D.</p>
+                <p>Varok Saurfang realizes that that if he is to secure a future for the Horde, he must reach out to the one who led it in the past.</p>
+                <!-- Use a button to pause/play the video with JavaScript -->
+              </div>
+    </div>
+    <div class="container-flex">
+            <footer class="footer sticky-bottom">
+                <div class="bottom-bar sticky-bottom text-center">
+                    <pre class="pre">OE-HTML5 2018-19/I    <a href="#">ÁSZF</a>    <a href="#">Adatkezelés</a></pre>  
+                </div>
+            </footer>
+    </div>
+   
 </body>
 
 </html>
+
+<script>
+        // Get the video
+        var video = document.getElementById("myVideo");
+        
+        // Get the button
+        var pauseBtn = document.getElementById("pauseBtn");
+        var muteBtn = document.getElementById("muteBtn");
+        
+        // Pause and play the video, and change the button text
+        function pauseButtonFunction() {
+          if (video.paused) {
+            video.play();
+          } else {
+            video.pause();
+          }
+        }
+</script>
