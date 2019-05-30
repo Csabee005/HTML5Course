@@ -233,6 +233,8 @@ pre a:focus{
     background: rgba(0, 0, 0, 0.2);
     color: #f1f1f1;
     width: 100%;
+    padding-bottom: 10px;
+    animation-duration: 50ms;
   }
 
   .left-controls{
@@ -257,3 +259,19 @@ pre a:focus{
     background: #ddd;
     color: black;
   }
+
+  .cssanimation, .cssanimation span {
+    animation-duration: 5s;
+    animation-fill-mode: both;
+}
+
+.cssanimation span { display: inline-block }
+
+.fadeInBottom { animation-name: fadeInBottom }
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to { opacity: 1 }
+}

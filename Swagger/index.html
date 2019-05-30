@@ -21,17 +21,15 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span>
-                              <span class="icon-bar"></span> 
+                              <span class="navbar-toggler-icon"></span>
                             </button>
                     <a class="navbar-brand-icon" href="#"><img id="logoIcon" src="/res/svg_images/icon_logo.svg"/></a>
                 </div>
                 <div class="collapse navbar-collapse" id="myNavbar">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.html">Játékosoknak</a></li>
-                        <li class="active"><a href="species.html">Fejlesztőknek</a></li>
-                        <li><a href="heroes.html">Rólunk</a></li>
+                        <li><a href="#">Játékosoknak</a></li>
+                        <li class="active"><a href="#">Fejlesztőknek</a></li>
+                        <li><a href="#">Rólunk</a></li>
                         <li><a href="#">Kapcsolatok</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
@@ -46,13 +44,15 @@
         <video autoplay onclick="pauseButtonFunction()" loop id="myVideo">
             <source src="res/mp4_videos/video_index.mp4" type="video/mp4">
             </video>
-        <div class="video-content">
+        <div class="video-content cssanimation sequence fadeInBottom">
                 <h1>Heroes of Empires</h1>
                 <p>The battle is not yet lost for the horde. Help your fellows rebuild their future, and forget their past.</p>
                 <p>Join them on this epic adventure by D&D.</p>
                 <p>Varok Saurfang realizes that that if he is to secure a future for the Horde, he must reach out to the one who led it in the past.</p>
-                <!-- Use a button to pause/play the video with JavaScript -->
-              </div>
+                <button class="btn button-accept-default">Játék menete</button>
+                <button class="btn button-accept-default">Hősök</button>
+                <button class="btn button-accept-default">Birodalmak</button>
+        </div>
     </div>
     <div class="container-flex">
             <footer class="footer sticky-bottom">

@@ -143,7 +143,7 @@ function startDeletion(id) {
     request.send();
 
     var successText = document.getElementById("txtSuccessDeletion");
-    var failureText = document.getElementById("txtFailureCreation");
+    var failureText = document.getElementById("txtFailureDeletion");
     failureText.innerHTML = "";
     successText.innerHTML = "";
 
@@ -244,8 +244,8 @@ function onRemovalDialog(button) {
 
         $("#deletionDialog").dialog("open");
     });
-    var btnCancel = document.getElementById("btnCancelHeroRemoval");
-    var btnOk = document.getElementById("btnAcceptHeroRemoval");
+    var btnCancel = document.getElementById("btnCancelSpecimenRemoval");
+    var btnOk = document.getElementById("btnAcceptSpecimenRemoval");
     btnOk.onclick = function() {
         onDeletionAccepted(button);
     }
