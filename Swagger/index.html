@@ -102,10 +102,10 @@
         
         // Pause and play the video, and change the button text
         function pauseButtonFunction() {
-          if (video.paused) {
-            video.play();
+          if (video.muted) {
+            video.muted = false;
           } else {
-            video.pause();
+            video.muted = true;
           }
         }
 </script>
