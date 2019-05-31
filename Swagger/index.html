@@ -84,6 +84,15 @@
 </html>
 
 <script>
+        window.addEventListener('load', async () => {
+        let video = document.querySelector('video[autoplay]');
+        try {
+            await video.play();
+        } catch (err) {
+            video.muted = true;
+            video.play();   
+        }
+        });
         // Get the video
         var video = document.getElementById("myVideo");
         
