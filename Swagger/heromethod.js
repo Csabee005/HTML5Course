@@ -263,20 +263,14 @@ function showDetailerHeroData(hero) {
     var txtIDViewHero = document.getElementById("txtIDViewHero");
     var txtNameViewHero = document.getElementById("txtNameViewHero");
     var txtDescriptionViewHero = document.getElementById("txtDescriptionViewHero");
-    var txtLinksViewHero = document.getElementById("txtLinksViewHero");
-    var txtUriViewHero = document.getElementById("txtUriViewHero");
-    var txtTitleViewHero = document.getElementById("txtTitleViewHero");
+    var txtHrefViewHero = document.getElementById("txtHrefViewHero");
     var txtRelViewHero = document.getElementById("txtRelViewHero");
-    var txtTypeViewHero = document.getElementById("txtTypeViewHero");
 
     txtIDViewHero.value = hero.id;
     txtNameViewHero.value = hero.name;
     txtDescriptionViewHero.value = hero.description;
-    txtLinksViewHero.value = hero.links[0];
-    txtUriViewHero.value = hero.links[0].uri;
-    txtTitleViewHero.value = hero.links[0].title;
+    txtHrefViewHero.value = hero.links[0].href;
     txtRelViewHero.value = hero.links[0].rel;
-    txtTypeViewHero.value = hero.links[0].type;
 
     $("#heroDataDialog").dialog({
         autoOpen: false,
